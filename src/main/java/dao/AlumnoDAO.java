@@ -82,4 +82,21 @@ public class AlumnoDAO {
         }
         return listaAlumnos;
     }
+
+    // --- 4. ELIMINAR (Borrar un alumno por ID) ---
+    public boolean eliminarAlumno(int id) {
+        String sql = "DELETE FROM alumnos WHERE id = ?";
+
+        try (Connection conn = conexionDB.conectar();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar alumno: " + e.getMessage());
+            return false;
+        }
+    }
 }

@@ -11,6 +11,10 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <!-- Ajusta la versión de JavaFX aquí; el SDK que indicas está en 17.0.19 -->
+        <javafx.version>17.0.19</javafx.version>
+        <!-- Plataforma: 'win' para Windows, 'linux' para Linux, 'mac' para macOS -->
+        <javafx.platform>win</javafx.platform>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -21,15 +25,18 @@
             <version>3.45.1.0</version>
         </dependency>
 
+        <!-- Dependencias JavaFX con classifier según plataforma -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>17.0.6</version>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.platform}</classifier>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>17.0.6</version>
+            <version>${javafx.version}</version>
+            <classifier>${javafx.platform}</classifier>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
@@ -38,4 +45,29 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Plugin que facilita ejecutar aplicaciones JavaFX con Maven -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.13</version>
+                <configuration>
+                    <mainClass>view.App</mainClass>
+                </configuration>
+            </plugin>
+            <!-- Plugin alternativo para ejecutar con control total (uso: mvn exec:java) -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <mainClass>view.App</mainClass>
+                    <arguments>
+                    </arguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
