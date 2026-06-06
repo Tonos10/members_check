@@ -20,17 +20,28 @@ public class conexionDB {
     }
 
     public static void inicializarBaseDeDatos() {
-        String sql = "CREATE TABLE IF NOT EXISTS alumnos ("
+        String sql_alumnos = "CREATE TABLE IF NOT EXISTS alumnos ("
                 + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + "nombre TEXT NOT NULL,"
                 + "cinta TEXT NOT NULL,"
-                + "fecha_ingreso TEXT NOT NULL"
+                + "fecha_ingreso TEXT NOT NULL,"
+                + "metodo_pago_preferido TEXT DEFAULT 'Efectivo'"
+                + ");";
+
+        String sql_pagos = "CREATE TABLE IF NOT EXISTS pagos ("
+                + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + "id_alumno INTEGER NOT NULL,"
+                + "fecha_pago TEXT NOT NULL,"
+                + "monto REAL NOT NULL,"
+                + "metodo_pago TEXT NOT NULL,"
+                + "FOREIGN KEY (id_alumno) REFERENCES alumnos (id)"
                 + ");";
 
         try (Connection conn = conectar();
              java.sql.Statement stmt = conn.createStatement()) {
 
-            stmt.execute(sql);
+            stmt.execute(sql_alumnos);
+            stmt.execute(sql_pagos);
             System.out.println("Estructura de la base de datos verificada y lista.");
 
         } catch (SQLException e) {

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.DashboardController"
+            stylesheets="/css/dashboard.css">
+
+    <left>
+        <VBox fx:id="sidebar" prefWidth="240.0" minWidth="60" styleClass="sidebar" BorderPane.alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="28.0" right="18.0" bottom="18.0" left="18.0"/>
+            </padding>
+
+            <Button fx:id="btnMenu" text="" mnemonicParsing="false" styleClass="btn-menu"/>
+            <Label fx:id="lblLogo" text="panel de control" styleClass="sidebar-title" wrapText="true"/>
+
+            <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnNavAlumnos" text="Alumnos" mnemonicParsing="false" minWidth="60" styleClass="sidebar-btn" maxWidth="Infinity" onAction="#mostrarAlumnos"/>
+                <Button fx:id="btnNavPagos" text="Pagos" mnemonicParsing="false" minWidth="60" styleClass="sidebar-btn" maxWidth="Infinity" onAction="#mostrarPagos"/>
+            </VBox>
+
+            <Button fx:id="btnCerrarSesion" text="Cerrar Sesión" mnemonicParsing="false" minWidth="60" styleClass="sidebar-logout" maxWidth="Infinity" onAction="#cerrarSesion"/>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="18.0" styleClass="content-area" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="24.0" right="24.0" bottom="24.0" left="24.0"/>
+            </padding>
+
+            <HBox spacing="16.0" alignment="CENTER_LEFT">
+                <Label text="Gestión de Alumnos" styleClass="page-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="txtBuscar" promptText="Buscar alumnos..." styleClass="search-bar"/>
+                <Button text="+ Agregar Alumno" onAction="#mostrarFormulario" styleClass="btn-primary"/>
+            </HBox>
+
+            <TableView fx:id="tablaAlumnos" VBox.vgrow="ALWAYS" styleClass="students-table">
+                <columns>
+                    <TableColumn fx:id="colNombre" text="NOMBRE DEL ALUMNO" prefWidth="200.0"/>
+                    <TableColumn fx:id="colFechaPago" text="FECHA DE PAGO" prefWidth="130.0"/>
+                    <TableColumn fx:id="colTelefono" text="TELÉFONO" prefWidth="120.0"/>
+                    <TableColumn fx:id="colFechaNac" text="F. NACIMIENTO" prefWidth="120.0"/>
+                    <TableColumn fx:id="colMetodo" text="MÉTODO" prefWidth="110.0"/>
+                    <TableColumn fx:id="colEstado" text="ESTADO" prefWidth="120.0"/>
+                    <TableColumn fx:id="colAcciones" text="ACCIONES" prefWidth="150.0"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,154 @@
+/* =====================================================
+   Material Design - Estilo Moderno para JavaFX Dojo
+   ===================================================== */
+
+/* ROOT: Configuración global (afecta a toda la ventana) */
+.root {
+    -fx-font-family: "Segoe UI", "Helvetica Neue", sans-serif; /* TIPO DE LETRA: Fuentes modernas y limpias */
+    -fx-font-size: 12px; /* TAMAÑO DE LETRA: Tamaño base para todo el texto */
+    -fx-base: #f5f5f5; /* COLOR BASE: Un gris súper clarito para que no lastime la vista */
+    -fx-background-color: #fafafa; /* FONDO PRINCIPAL: Color de fondo de la ventana entera */
+}
+
+/* =====================================================
+   BOTONES GLOBALES - El diseño base para todos los botones
+   ===================================================== */
+.button {
+    -fx-padding: 10px 20px; /* ESPACIADO INTERNO: Arriba/Abajo 10px, Izquierda/Derecha 20px (los hace "gorditos") */
+    -fx-font-size: 13px; /* TAMAÑO LETRA BOTÓN: Un poquito más grande que el texto normal */
+    -fx-font-weight: bold; /* GROSOR: Letras en negrita */
+    -fx-text-fill: white; /* COLOR TEXTO: Letras blancas */
+    -fx-background-color: #1976D2; /* FONDO: Azul rey por defecto */
+    -fx-border-radius: 4px; /* CURVA DEL BORDE: Redondea las esquinas (4 pixeles) */
+    -fx-background-radius: 4px; /* CURVA DEL FONDO: Debe coincidir con el borde para verse bien */
+    -fx-border-width: 0; /* GROSOR DE BORDE: Sin línea de contorno */
+    -fx-cursor: hand; /* RATÓN: Cambia la flecha por una "manita" al pasar sobre el botón */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 3, 0.0, 0, 1); /* SOMBRA: Efecto 3D ligero hacia abajo */
+}
+
+/* Efecto cuando pasas el ratón por encima de CUALQUIER botón */
+.button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 6, 0.0, 0, 2); /* SOMBRA MAYOR: Hace que el botón "resalte" o se levante */
+}
+
+/* Efecto cuando haces CLIC en CUALQUIER botón */
+.button:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 8, 0.0, 0, 3); /* SOMBRA PROFUNDA: Simula que el botón se hunde */
+}
+
+/* =====================================================
+   COLORES ESPECÍFICOS PARA CADA BOTÓN (Usando sus fx:id)
+   ===================================================== */
+
+/* Botón Guardar - Azul */
+#btnGuardar { -fx-background-color: #1976D2; } /* FONDO: Azul normal */
+#btnGuardar:hover { -fx-background-color: #1565C0; } /* FONDO HOVER: Azul más oscuro al pasar el ratón */
+
+/* Botón Actualizar - Verde */
+#btnActualizar { -fx-background-color: #388E3C; } /* FONDO: Verde normal */
+#btnActualizar:hover { -fx-background-color: #2E7D32; } /* FONDO HOVER: Verde más oscuro */
+#btnActualizar:pressed { -fx-background-color: #1B5E20; } /* FONDO CLIC: Verde muy oscuro al presionar */
+
+/* Botón Eliminar - Rojo (Peligro) */
+#btnEliminar { -fx-background-color: #D32F2F; } /* FONDO: Rojo normal */
+#btnEliminar:hover { -fx-background-color: #C62828; } /* FONDO HOVER: Rojo oscuro */
+#btnEliminar:pressed { -fx-background-color: #B71C1C; } /* FONDO CLIC: Rojo sangre al presionar */
+
+/* Botón Limpiar - Gris (Neutral) */
+#btnLimpiar { -fx-background-color: #757575; } /* FONDO: Gris normal */
+#btnLimpiar:hover { -fx-background-color: #616161; } /* FONDO HOVER: Gris oscuro */
+#btnLimpiar:pressed { -fx-background-color: #424242; } /* FONDO CLIC: Gris muy oscuro */
+
+/* =====================================================
+   CAJAS DE TEXTO (TextFields) y CALENDARIO (DatePicker)
+   ===================================================== */
+.text-field, .date-picker {
+    -fx-padding: 8px 12px; /* ESPACIADO INTERNO: Para que el texto no esté pegado a la orilla */
+    -fx-font-size: 12px; /* TAMAÑO LETRA: Normal */
+    -fx-control-inner-background: white; /* FONDO CAJA: Color blanco por dentro */
+    -fx-border-color: #E0E0E0; /* COLOR LÍNEA: Un borde gris clarito */
+    -fx-border-width: 1; /* GROSOR LÍNEA: 1 pixel de contorno */
+    -fx-border-radius: 4px; /* CURVA LÍNEA: Esquinas redondeadas */
+    -fx-background-radius: 4px; /* CURVA FONDO: Coincide con la curva de la línea */
+    -fx-text-fill: #212121; /* COLOR LETRAS: Gris muy oscuro (casi negro) al escribir */
+}
+
+/* Efecto cuando le das clic a la caja para escribir (Focused) */
+.text-field:focused, .date-picker:focused {
+    -fx-border-color: #1976D2; /* LÍNEA ACTIVA: Se pinta de azul para saber dónde estás escribiendo */
+    -fx-border-width: 2; /* GROSOR ACTIVO: La línea se hace más gruesa */
+    -fx-effect: dropshadow(gaussian, rgba(25, 118, 210, 0.2), 4, 0.0, 0, 1); /* RESPLANDOR: Sombra azulada alrededor */
+}
+
+/* =====================================================
+   ETIQUETAS (Labels) - Los textos fijos como "Nombre:"
+   ===================================================== */
+.label {
+    -fx-text-fill: #212121; /* COLOR TEXTO: Gris oscuro para buena lectura */
+    -fx-font-size: 12px; /* TAMAÑO LETRA: Normal */
+}
+
+/* =====================================================
+   LA TABLA (TableView) - ¡AQUÍ ESTÁ LA SOLUCIÓN DEL TEXTO INVISIBLE!
+   ===================================================== */
+
+/* Contenedor principal de la tabla */
+.table-view {
+    -fx-background-color: white; /* FONDO TABLA: Blanco puro */
+    -fx-border-color: #E0E0E0; /* LÍNEA EXTERIOR: Gris claro */
+    -fx-border-radius: 4px; /* CURVA: Esquinas de la tabla redondeadas */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 2, 0.0, 0, 1); /* SOMBRA: Sombra muy ligera en la tabla */
+}
+
+/* Los títulos de las columnas (ID, Nombre, Cinta...) */
+.table-view .column-header {
+    -fx-background-color: #f5f5f5; /* FONDO TÍTULOS: Gris clarito */
+    -fx-text-fill: #424242; /* COLOR LETRA TÍTULO: Gris oscuro */
+    -fx-font-weight: bold; /* GROSOR TÍTULO: Negritas */
+    -fx-border-color: transparent transparent #BDBDBD transparent; /* LÍNEA TÍTULOS: Solo dibuja una línea gris en la parte de ABAJO */
+    -fx-border-width: 2; /* GROSOR LÍNEA TÍTULOS: 2 pixeles */
+}
+
+/* Cada CELDA individual (Los cuadritos donde van los datos) */
+.table-cell {
+    -fx-padding: 6px; /* ESPACIADO: Separa el texto de las orillas */
+    -fx-text-fill: #212121; /* SOLUCIÓN COLOR: Fuerza a que todo el texto de la tabla sea NEGRO/GRIS OSCURO siempre */
+    -fx-border-color: transparent; /* LÍNEA CELDA: Quita las líneas verticales (estilo moderno) */
+}
+
+/* Las filas de la tabla (renglones) */
+.table-row-cell {
+    -fx-cell-size: 35px; /* ALTURA RENGLÓN: Hace las filas más altas para que no se vean aplastadas */
+    -fx-border-color: transparent transparent #F5F5F5 transparent; /* LÍNEA RENGLÓN: Solo dibuja una línea gris muy fina abajo de cada fila */
+}
+
+/* Efecto cuando pasas el ratón por encima de un renglón */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #F5F5F5; /* FONDO HOVER: Se pone gris clarito al pasar el mouse */
+}
+
+/* Efecto cuando le das CLIC (seleccionas) a un renglón entero */
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: #E3F2FD; /* FONDO SELECCIÓN: Azul súper clarito tipo agua */
+}
+
+/* SOLUCIÓN AL TEXTO SELECCIONADO: Cambia el color de la letra SOLO cuando seleccionas la fila */
+.table-view .table-row-cell:filled:selected .table-cell {
+    -fx-text-fill: #1565C0; /* COLOR TEXTO SELECCIONADO: Azul fuerte para que resalte sobre el fondo azul claro */
+}
+
+/* =====================================================
+   BARRA DE DESPLAZAMIENTO (Scroll Bar)
+   ===================================================== */
+.scroll-bar {
+    -fx-background-color: #FAFAFA; /* FONDO BARRA: Gris muy pálido */
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #BDBDBD; /* COLOR BARRA (LA QUE SE MUEVE): Gris oscuro */
+    -fx-background-radius: 5px; /* CURVA BARRA: Redondeada tipo celular */
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #9E9E9E; /* COLOR BARRA HOVER: Se oscurece al pasar el ratón */
+}
