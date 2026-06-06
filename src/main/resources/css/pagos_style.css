@@ -1,0 +1,170 @@
+/* pagos_style.css - Diseño Moderno para Pagos */
+
+.main_container {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 30;
+    -fx-spacing: 25;
+}
+
+.title_label {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.subtitle_label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+    -fx-padding: 0 0 10 0;
+}
+
+/* --- CARDS CONTAINER (Flexbox/Grid simulación) --- */
+.card_container {
+    -fx-spacing: 20;
+    -fx-alignment: center-left;
+}
+
+/* --- ESTILO DE CADA CARD --- */
+.summary_card {
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    -fx-background-radius: 15px;
+    -fx-border-color: rgba(255, 255, 255, 0.6);
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 25, 0.1, 0, 12);
+    -fx-padding: 30px;
+    -fx-min-width: 250px;
+    -fx-pref-width: 280px;
+    -fx-alignment: center-left;
+    -fx-spacing: 12;
+}
+
+.summary_card:hover {
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 35, 0.2, 0, 15);
+    -fx-background-color: rgba(255, 255, 255, 0.35);
+}
+
+.card_title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #546e7a;
+    -fx-text-transform: uppercase;
+}
+
+.card_value_ingresos {
+    -fx-font-size: 26px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #27ae60;
+}
+
+.card_value_pendientes {
+    -fx-font-size: 26px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #e74c3c;
+}
+
+.card_value_alumnos {
+    -fx-font-size: 26px;
+    -fx-font-weight: 900;
+    -fx-text-fill: #2980b9;
+}
+
+.icon_ingresos {
+    -fx-fill: #27ae60;
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+}
+
+.icon_pendientes {
+    -fx-fill: #e74c3c;
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+}
+
+.icon_alumnos {
+    -fx-fill: #2980b9;
+    -fx-scale-x: 1.5;
+    -fx-scale-y: 1.5;
+}
+
+/* --- ESTILOS DE LA TABLA --- */
+.pagos_table {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-insets: 0;
+    -fx-background-radius: 10px;
+    -fx-border-color: rgba(255, 255, 255, 0.6);
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 30, 0.1, 0, 10);
+}
+
+.pagos_table .column-header-background {
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    -fx-background-radius: 10px 10px 0 0;
+}
+
+.pagos_table .column-header,
+.pagos_table .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent rgba(255, 255, 255, 0.4) transparent;
+    -fx-pref-height: 40px;
+}
+
+.pagos_table .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #455A64;
+    -fx-font-size: 13px;
+    -fx-padding: 10px;
+}
+
+.pagos_table .table-row-cell {
+    -fx-cell-size: 45px;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent rgba(236, 236, 236, 0.2) transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.pagos_table .table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pagos_table .table-row-cell:selected {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+}
+
+.pagos_table .table-row-cell:selected .text {
+    -fx-fill: #004D40;
+}
+
+.pagos_table .table-cell {
+    -fx-text-fill: #212121;
+    -fx-border-color: transparent;
+    -fx-padding: 0 12px 0 12px;
+}
+
+.pagos_table .table-row-cell:filled:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.35);
+}
+
+/* --- BOTÓN RECIBO --- */
+.btn_recibo {
+    -fx-background-color: linear-gradient(to bottom right, rgba(52, 152, 219, 0.85), rgba(41, 128, 185, 0.95));
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-color: rgba(255, 255, 255, 0.4);
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+    -fx-padding: 5 15;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.4), 10, 0, 0, 4);
+}
+
+.btn_recibo:hover {
+    -fx-background-color: linear-gradient(to bottom right, rgba(52, 152, 219, 1), rgba(41, 128, 185, 1));
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.6), 15, 0, 0, 4);
+}

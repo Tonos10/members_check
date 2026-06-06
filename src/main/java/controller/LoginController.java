@@ -26,7 +26,7 @@ public class LoginController {
 
     @FXML
     public void initialize() {
-        usuarioDAO.crearTablaYAdminPorDefecto();
+        usuarioDAO.crearTablaUsuarios();
     }
 
     @FXML

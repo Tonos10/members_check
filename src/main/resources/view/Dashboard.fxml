@@ -9,81 +9,58 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17"
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.DashboardController"
-            stylesheets="@dashboard.css">
+            stylesheets="/css/dashboard.css">
 
-    <!-- Sidebar izquierdo -->
     <left>
-        <VBox fx:id="sidebar" spacing="12.0" prefWidth="200.0" styleClass="sidebar" BorderPane.alignment="CENTER_LEFT">
+        <VBox fx:id="sidebar" prefWidth="240.0" minWidth="60" styleClass="sidebar" BorderPane.alignment="CENTER_LEFT">
             <padding>
-                <Insets top="20.0" right="12.0" bottom="12.0" left="12.0"/>
+                <Insets top="28.0" right="18.0" bottom="18.0" left="18.0"/>
             </padding>
 
-            <Label text="Dojo" style="-fx-font-size:18px; -fx-text-fill: white; -fx-font-weight: 700;"/>
+            <Button fx:id="btnMenu" text="" mnemonicParsing="false" styleClass="btn-menu"/>
+            <Label fx:id="lblLogo" text="panel de control" styleClass="sidebar-title" wrapText="true"/>
 
-            <Button fx:id="btnInicio" text="Inicio" styleClass="sidebar-button"/>
-            <Button fx:id="btnAlumnos" text="Alumnos" styleClass="sidebar-button"/>
-            <Button fx:id="btnPlanes" text="Planes" styleClass="sidebar-button"/>
-            <Button fx:id="btnPagos" text="Pagos" styleClass="sidebar-button"/>
+            <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+                <Button fx:id="btnNavAlumnos" text="Alumnos" mnemonicParsing="false" minWidth="60" styleClass="sidebar-btn" maxWidth="Infinity" onAction="#mostrarAlumnos"/>
+                <Button fx:id="btnNavPagos" text="Pagos" mnemonicParsing="false" minWidth="60" styleClass="sidebar-btn" maxWidth="Infinity" onAction="#mostrarPagos"/>
+            </VBox>
 
-            <VBox VBox.vgrow="ALWAYS" />
-
-            <Button fx:id="btnCerrarSesion" text="Cerrar Sesión" styleClass="logout-button" onAction="#cerrarSesion"/>
+            <Button fx:id="btnCerrarSesion" text="Cerrar Sesión" mnemonicParsing="false" minWidth="60" styleClass="sidebar-logout" maxWidth="Infinity" onAction="#cerrarSesion"/>
         </VBox>
     </left>
 
-    <!-- Centro: formulario y tabla (contenido existente) -->
     <center>
-        <HBox spacing="12.0" BorderPane.alignment="CENTER">
+        <VBox spacing="18.0" styleClass="content-area" BorderPane.alignment="CENTER">
             <padding>
-                <Insets top="16.0" right="16.0" bottom="16.0" left="16.0"/>
+                <Insets top="24.0" right="24.0" bottom="24.0" left="24.0"/>
             </padding>
 
-            <!-- Formulario - izquierdo dentro del centro -->
-            <VBox spacing="12.0" prefWidth="320.0">
-                <Label text="Nuevo Alumno" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            <HBox spacing="16.0" alignment="CENTER_LEFT">
+                <Label text="Gestión de Alumnos" styleClass="page-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="txtBuscar" promptText="Buscar alumnos..." styleClass="search-bar"/>
+                <Button text="+ Agregar Alumno" onAction="#mostrarFormulario" styleClass="btn-primary"/>
+            </HBox>
 
-                <GridPane hgap="8.0" vgap="10.0">
-                    <Label text="Nombre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtNombre" promptText="Nombre del alumno" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-
-                    <Label text="Cinta:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                    <TextField fx:id="txtCinta" promptText="Ej. Blanca, Amarilla..." GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-
-                    <Label text="Fecha de ingreso:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                    <DatePicker fx:id="dpFechaIngreso" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
-                </GridPane>
-
-                <Button text="Guardar" fx:id="btnGuardar" onAction="#guardarAlumno" maxWidth="Infinity"/>
-
-                <HBox spacing="8.0" maxWidth="Infinity">
-                    <Button text="Actualizar" fx:id="btnActualizar" onAction="#actualizarAlumno" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
-                    <Button text="Eliminar" fx:id="btnEliminar" onAction="#eliminarAlumno" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
-                </HBox>
-
-                <Button text="Limpiar" fx:id="btnLimpiar" onAction="#limpiarFormularioUI" maxWidth="Infinity"/>
-            </VBox>
-
-            <!-- Tabla - derecho dentro del centro -->
-            <VBox spacing="8.0" HBox.hgrow="ALWAYS">
-                <Label text="Listado de Alumnos" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-
-                <TableView fx:id="tablaAlumnos" prefWidth="600.0" prefHeight="560.0" VBox.vgrow="ALWAYS">
-                    <columns>
-                        <TableColumn fx:id="colId" text="ID" prefWidth="70.0"/>
-                        <TableColumn fx:id="colNombre" text="Nombre" prefWidth="180.0"/>
-                        <TableColumn fx:id="colCinta" text="Cinta" prefWidth="120.0"/>
-                        <TableColumn fx:id="colFechaIngreso" text="Fecha de Ingreso" prefWidth="180.0"/>
-                    </columns>
-                </TableView>
-            </VBox>
-        </HBox>
+            <TableView fx:id="tablaAlumnos" VBox.vgrow="ALWAYS" styleClass="students-table">
+                <columns>
+                    <TableColumn fx:id="colNombre" text="NOMBRE DEL ALUMNO" prefWidth="200.0"/>
+                    <TableColumn fx:id="colFechaPago" text="FECHA DE PAGO" prefWidth="130.0"/>
+                    <TableColumn fx:id="colTelefono" text="TELÉFONO" prefWidth="120.0"/>
+                    <TableColumn fx:id="colFechaNac" text="F. NACIMIENTO" prefWidth="120.0"/>
+                    <TableColumn fx:id="colMetodo" text="MÉTODO" prefWidth="110.0"/>
+                    <TableColumn fx:id="colEstado" text="ESTADO" prefWidth="120.0"/>
+                    <TableColumn fx:id="colAcciones" text="ACCIONES" prefWidth="150.0"/>
+                </columns>
+            </TableView>
+        </VBox>
     </center>
 
 </BorderPane>

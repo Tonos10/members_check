@@ -11,21 +11,30 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <!-- Ajusta la versión de JavaFX aquí; el SDK que indicas está en 17.0.19 -->
         <javafx.version>17.0.19</javafx.version>
-        <!-- Plataforma: 'win' para Windows, 'linux' para Linux, 'mac' para macOS -->
         <javafx.platform>win</javafx.platform>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.36</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.xerial</groupId>
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.45.1.0</version>
         </dependency>
 
-        <!-- Dependencias JavaFX con classifier según plataforma -->
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.13.3</version>
+        </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -38,26 +47,25 @@
             <version>${javafx.version}</version>
             <classifier>${javafx.platform}</classifier>
         </dependency>
+
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>RELEASE</version>
+            <version>26.1.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Plugin que facilita ejecutar aplicaciones JavaFX con Maven -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.13</version>
+                <version>0.0.8</version>
                 <configuration>
                     <mainClass>view.App</mainClass>
                 </configuration>
             </plugin>
-            <!-- Plugin alternativo para ejecutar con control total (uso: mvn exec:java) -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
