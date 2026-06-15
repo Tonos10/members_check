@@ -1,6 +1,7 @@
 package dao;
 
 import database.conexionDB; // Con tu 'c' minúscula original
+import modelo.Usuario;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -76,6 +77,43 @@ public class UsuarioDAO {
 
         } catch (SQLException e) {
             System.err.println("Error al validar el login: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Obtiene el usuario principal/admin de la BD (para cargar sus datos en el modal)
+    public Usuario get_current_admin_user() {
+        String query_sql = "SELECT * FROM usuarios LIMIT 1";
+        try (Connection db_conn = conexionDB.conectar();
+             Statement db_stmt = db_conn.createStatement();
+             ResultSet rs_data = db_stmt.executeQuery(query_sql)) {
+
+            if (rs_data.next()) {
+                return new Usuario(
+                        rs_data.getInt("id"),
+                        rs_data.getString("username"),
+                        rs_data.getString("password")
+                );
+            }
+        } catch (SQLException ex_sql) {
+            System.err.println("Error obteniendo current_user: " + ex_sql.getMessage());
+        }
+        return null;
+    }
+
+    // Actualiza las credenciales del usuario
+    public boolean update_admin_user(int user_id, String new_username, String new_password) {
+        String update_sql = "UPDATE usuarios SET username = ?, password = ? WHERE id = ?";
+        try (Connection db_conn = conexionDB.conectar();
+             PreparedStatement prepared_stmt = db_conn.prepareStatement(update_sql)) {
+
+            prepared_stmt.setString(1, new_username);
+            prepared_stmt.setString(2, new_password);
+            prepared_stmt.setInt(3, user_id);
+
+            return prepared_stmt.executeUpdate() > 0;
+        } catch (SQLException ex_sql) {
+            System.err.println("Error en update_admin_user: " + ex_sql.getMessage());
             return false;
         }
     }
