@@ -1,0 +1,20 @@
+
+
+Version:	3.50
+CmdLine:	C:\Users\Antonio\IdeaProjects\members_check\target.exe --l4j-debug
+JNI:		No
+WOW64:		Yes
+Working dir:	C:\Users\Antonio\IdeaProjects\members_check\.
+Requires JDK:	No
+Requires 64-Bit: No
+Java min ver:	1.017.000
+Java max ver:	
+Substitute:	JAVA_HOME = C:\Program Files\Java\jdk-17
+Substitute:	PATH = C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python314\Scripts\;C:\Python314\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Users\Antonio\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\nodejs\;C:\Program Files\cursor\resources\app\bin;C:\Users\Antonio\.local\bin;C:\Users\Antonio\AppData\Local\Microsoft\WindowsApps;C:\Users\Antonio\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Antonio\AppData\Local\Programs\Antigravity\bin;C:\Users\Antonio\.dotnet\tools;C:\Users\Antonio\AppData\Roaming\npm;C:\Users\Antonio\AppData\Local\Python\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Program Files\Java\jdk-17\bin
+JRE paths:	C:\Program Files\Java\jdk-17;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Python314\Scripts\;C:\Python314\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Users\Antonio\AppData\Local\Android\Sdk\platform-tools;C:\Program Files\nodejs\;C:\Program Files\cursor\resources\app\bin;C:\Users\Antonio\.local\bin;C:\Users\Antonio\AppData\Local\Microsoft\WindowsApps;C:\Users\Antonio\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Antonio\AppData\Local\Programs\Antigravity\bin;C:\Users\Antonio\.dotnet\tools;C:\Users\Antonio\AppData\Roaming\npm;C:\Users\Antonio\AppData\Local\Python\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2026.1.1\bin;C:\Program Files\Java\jdk-17\bin
+Check launcher:	C:\Program Files\Java\jdk-17\bin\javaw.exe (OK)
+Version string: 1.017.000_012 / 64-Bit (OK)
+Launcher:	C:\Program Files\Java\jdk-17\bin\javaw.exe
+Launcher args:	-jar "C:\Users\Antonio\IdeaProjects\members_check\target.exe"
+Args length:	61/32768 chars
+Exit code:	0
