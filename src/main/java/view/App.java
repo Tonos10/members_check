@@ -13,12 +13,12 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         conexionDB.inicializarBaseDeDatos();
-        
+
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         usuarioDAO.crearTablaUsuarios();
 
         String viewPath = "/view/Login.fxml";
-        String title = "Acceso al Sistema - Dojo";
+        String title = "Members Check";
 
         if (usuarioDAO.estaVacia()) {
             viewPath = "/view/Registro.fxml";
@@ -31,6 +31,16 @@ public class App extends Application {
         stage.setTitle(title);
         stage.setScene(scene);
         stage.setResizable(false);
+
+        // --- El ícono DEBE ir adentro de este método, antes del show() ---
+        try {
+            // Recuerda: Aquí debe ser el archivo .png, NO el .ico
+            stage.getIcons().add(new javafx.scene.image.Image(getClass().getResourceAsStream("/logo.png")));
+        } catch (Exception e) {
+            System.out.println("No se encontró la imagen del logo.");
+        }
+
+        // Mostramos y centramos la ventana una sola vez al final
         stage.show();
         stage.centerOnScreen();
     }
@@ -39,4 +49,3 @@ public class App extends Application {
         launch(args);
     }
 }
-
