@@ -53,13 +53,13 @@ public class LoginController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Dashboard.fxml"));
             Parent root = loader.load();
 
-            Stage stageActual = (Stage) txtUsername.getScene().getWindow();
-            Stage dashboardStage = new Stage();
-            dashboardStage.setTitle("Gestión Dojo - Alumnos");
-            dashboardStage.setScene(new Scene(root, 800, 600));
-            dashboardStage.show();
+            Stage stage_actual = (Stage) btnLogin.getScene().getWindow();
+            Stage dashboard_stage = new Stage();
+            dashboard_stage.setTitle("Gestión Dojo - Alumnos");
+            dashboard_stage.setScene(new Scene(root, 800, 600));
+            dashboard_stage.show();
 
-            stageActual.close();
+            stage_actual.close();
 
         } catch (Exception e) {
             mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudo abrir el dashboard: " + e.getMessage());

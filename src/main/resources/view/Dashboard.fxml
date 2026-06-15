@@ -30,6 +30,7 @@
             <VBox spacing="8.0" VBox.vgrow="ALWAYS">
                 <Button fx:id="btnNavAlumnos" text="Alumnos" mnemonicParsing="false" minWidth="60" styleClass="sidebar-btn" maxWidth="Infinity" onAction="#mostrarAlumnos"/>
                 <Button fx:id="btnNavPagos" text="Pagos" mnemonicParsing="false" minWidth="60" styleClass="sidebar-btn" maxWidth="Infinity" onAction="#mostrarPagos"/>
+                <Button fx:id="btnSettings" text="Ajustes" mnemonicParsing="false" minWidth="60" styleClass="sidebar-btn" maxWidth="Infinity" onAction="#open_settings_modal"/>
             </VBox>
 
             <Button fx:id="btnCerrarSesion" text="Cerrar Sesión" mnemonicParsing="false" minWidth="60" styleClass="sidebar-logout" maxWidth="Infinity" onAction="#cerrarSesion"/>
