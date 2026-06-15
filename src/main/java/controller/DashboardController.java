@@ -156,11 +156,13 @@ public class DashboardController {
                     btnBorrar.getStyleClass().add("btn-accion-borrar");
                     
                     btnEditar.setOnAction(e -> {
+                        e.consume(); // BUG 1: Consumimos el evento
                         alumnoSeleccionado = getTableRow().getItem();
                         mostrarFormulario(); 
                     });
                     
                     btnBorrar.setOnAction(e -> {
+                        e.consume(); // BUG 1: Consumimos el evento
                         alumnoSeleccionado = getTableRow().getItem();
                         eliminarAlumno();
                     });
@@ -186,19 +188,19 @@ public class DashboardController {
 
         cargarAlumnos();
 
-        // Selección rápida para edición
-        tablaAlumnos.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) {
-                alumnoSeleccionado = newVal;
-                mostrarFormulario();
-            }
-        });
-
-        // Configuración del Enrutador (Router)
-        nodoAlumnos = mainPane.getCenter();
-
+        // BUG 1: Eliminado el listener de selectedItemProperty que causaba la duplicidad.
+        // En su lugar, usamos onMouseClicked en las filas para editar por doble clic.
         tablaAlumnos.setRowFactory(tv -> {
             javafx.scene.control.TableRow<Alumno> row = new javafx.scene.control.TableRow<>();
+            
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    event.consume();
+                    alumnoSeleccionado = row.getItem();
+                    mostrarFormulario();
+                }
+            });
+
             row.itemProperty().addListener((obs, oldItem, newItem) -> {
                 if (newItem != null && oldItem == null) {
                     FadeTransition fade = new FadeTransition(javafx.util.Duration.millis(500), row);
@@ -481,12 +483,17 @@ public class DashboardController {
     }
 
     private void cargarAlumnos() {
-        try {
-            List<Alumno> lista = alumnoDAO.obtenerTodos();
-            alumnos.setAll(lista);
-        } catch (Exception e) {
-            mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudieron cargar los alumnos: " + e.getMessage());
-        }
+        javafx.application.Platform.runLater(() -> {
+            if (tablaAlumnos != null && tablaAlumnos.getSelectionModel() != null) {
+                tablaAlumnos.getSelectionModel().clearSelection();
+            }
+            try {
+                List<Alumno> lista = alumnoDAO.obtenerTodos();
+                alumnos.setAll(lista);
+            } catch (Exception e) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Error", "No se pudieron cargar los alumnos: " + e.getMessage());
+            }
+        });
     }
 
     @FXML

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <VBox fx:id="profile_modal_layout" alignment="CENTER" spacing="18.0" prefWidth="350.0" prefHeight="420.0" 
       xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
@@ -33,5 +34,8 @@
         <PasswordField fx:id="pwd_confirm_password" promptText="Repetir contraseña" styleClass="input-field" prefWidth="280.0"/>
     </VBox>
 
-    <Button fx:id="btn_save_profile" text="Guardar Cambios" onAction="#handle_save_profile" styleClass="btn-primary" prefWidth="280.0" style="-fx-margin-top: 15px;"/>
+    <HBox spacing="10.0" alignment="CENTER" prefWidth="280.0" style="-fx-padding: 15 0 0 0;">
+        <Button text="Cancelar" onAction="#handle_cancel_profile" prefWidth="135.0" style="-fx-background-color: #ECEFF1; -fx-text-fill: #546E7A; -fx-font-weight: bold; -fx-background-radius: 8px; -fx-padding: 10px; -fx-cursor: hand;"/>
+        <Button fx:id="btn_save_profile" text="Guardar" onAction="#handle_save_profile" styleClass="btn-primary" prefWidth="135.0"/>
+    </HBox>
 </VBox>
