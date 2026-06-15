@@ -55,8 +55,15 @@ public class LoginController {
 
             Stage stage_actual = (Stage) btnLogin.getScene().getWindow();
             Stage dashboard_stage = new Stage();
-            dashboard_stage.setTitle("Gestión Dojo - Alumnos");
+            dashboard_stage.setTitle("Members Check");
             dashboard_stage.setScene(new Scene(root, 800, 600));
+            
+            try {
+                dashboard_stage.getIcons().add(new javafx.scene.image.Image(getClass().getResourceAsStream("/logo.png")));
+            } catch (Exception img_ex) {
+                System.out.println("No se encontró la imagen del logo en LoginController.");
+            }
+            
             dashboard_stage.show();
 
             stage_actual.close();

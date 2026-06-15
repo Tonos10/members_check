@@ -66,6 +66,11 @@ public class PerfilModalController {
         }
     }
 
+    @FXML
+    private void handle_cancel_profile() {
+        close_profile_modal();
+    }
+
     private void close_profile_modal() {
         Stage modal_window = (Stage) btn_save_profile.getScene().getWindow();
         modal_window.close();
