@@ -576,7 +576,7 @@ public class DashboardController {
                 loginStage.setResizable(false);
                 loginStage.show();
 
-                Stage current = (Stage) tablaAlumnos.getScene().getWindow();
+                Stage current = (Stage) btnCerrarSesion.getScene().getWindow();
                 current.close();
 
             } catch (Exception e) {
