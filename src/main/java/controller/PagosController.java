@@ -100,20 +100,28 @@ public class PagosController {
     }
 
     private void load_table_data() {
+        if (tbl_movimientos != null && tbl_movimientos.getSelectionModel() != null) {
+            tbl_movimientos.getSelectionModel().clearSelection();
+        }
         List<pago_modelo> lista = dao_pagos.get_all_payments();
         ObservableList<pago_modelo> observable_list = FXCollections.observableArrayList(lista);
         tbl_movimientos.setItems(observable_list);
     }
 
     private void generate_and_download_pdf(pago_modelo pago) {
-        // En un caso real se usa FileChooser, aquí guardamos localmente por simplicidad
-        String file_name = "Recibo_" + pago.get_nombre_alumno().replace(" ", "_") + "_" + pago.get_id() + ".pdf";
-        File file = new File(System.getProperty("user.home"), file_name);
+        String nombre_archivo = "Recibo_" + pago.get_nombre_alumno().replace(" ", "_") + "_" + pago.get_fecha_pago() + "_" + pago.get_id() + ".pdf";
+        File carpeta_documentos = new File(System.getProperty("user.home"), "Documents");
+        File carpeta_recibos = new File(carpeta_documentos, "recibos");
         
-        boolean exito = pdf_generator.generate_receipt(pago, file.getAbsolutePath());
+        if (!carpeta_recibos.exists()) {
+            carpeta_recibos.mkdirs();
+        }
+        
+        File archivo_recibo = new File(carpeta_recibos, nombre_archivo);
+        boolean exito = pdf_generator.generate_receipt(pago, archivo_recibo.getAbsolutePath());
         
         if (exito) {
-            mostrar_alerta(Alert.AlertType.INFORMATION, "Éxito", "Recibo generado en: " + file.getAbsolutePath());
+            mostrar_alerta(Alert.AlertType.INFORMATION, "Éxito", "Recibo generado en: " + archivo_recibo.getAbsolutePath());
         } else {
             mostrar_alerta(Alert.AlertType.ERROR, "Error", "No se pudo generar el recibo.");
         }

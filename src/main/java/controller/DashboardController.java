@@ -101,12 +101,14 @@ public class DashboardController {
     private final AlumnoDAO alumnoDAO = new AlumnoDAO();
     private final ObservableList<Alumno> alumnos = FXCollections.observableArrayList();
 
-    private Node nodoAlumnos;
-    private Node nodoPagos;
+    private Node nodo_alumnos;
+    private Node nodo_pagos;
 
     @FXML
     public void initialize() {
         new AlumnoDAO().migrarBaseDeDatos();
+        
+        nodo_alumnos = mainPane.getCenter();
         
         colNombre.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNombre()));
         colFechaPago.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>(cellData.getValue().getFecha()));
@@ -223,7 +225,7 @@ public class DashboardController {
     @FXML
     private void mostrarAlumnos() {
         System.out.println("Regresando a vista de Alumnos");
-        aplicar_transicion_panel(nodoAlumnos);
+        aplicar_transicion_panel(nodo_alumnos);
         update_active_nav(btnNavAlumnos, btnNavPagos);
     }
 
@@ -231,10 +233,8 @@ public class DashboardController {
     private void mostrarPagos() {
         System.out.println("Cambiando a vista de Pagos");
         try {
-            if (nodoPagos == null) {
-                nodoPagos = FXMLLoader.load(getClass().getResource("/view/Pagos.fxml"));
-            }
-            aplicar_transicion_panel(nodoPagos);
+            nodo_pagos = FXMLLoader.load(getClass().getResource("/view/Pagos.fxml"));
+            aplicar_transicion_panel(nodo_pagos);
             update_active_nav(btnNavPagos, btnNavAlumnos);
         } catch (Exception e) {
             System.out.println("ERROR CRÍTICO: No se pudo cargar Pagos.fxml");
